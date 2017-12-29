@@ -19,20 +19,12 @@
 class @Search
   constructor: ->
     $(document).on 'click', '.js-search--advanced-forum-post-reset', @forumPostReset
-    console.log findGetParameter
+    console.log @findGetParameter
 
   forumPostReset: =>
     $('[name=username], [name=forum_id]').val ''
     $('[name=forum_children]').prop 'checked', false
-
   findGetParameter: =>
-    result = null
-    tmp = []
-    items = location.search.substr(1).split('&')
-    index = 0
-    while index < items.length
-      tmp = items[index].split('=')
-      if tmp[0] == "forum_id"
-        result = decodeURIComponent(tmp[1])
-      index++
+    results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href)
+    result = decodeURI(results[1]) or 0
     result

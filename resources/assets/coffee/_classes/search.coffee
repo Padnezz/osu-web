@@ -19,9 +19,11 @@
 class @Search
   constructor: ->
     $(document).on 'click', '.js-search--advanced-forum-post-reset', @forumPostReset
-    results = new RegExp('[?&]' + "forum_id" + '=([^&#]*)').exec(window.location.href)
-    $("search-advanced-forum-post__input select").val decodeURI(results[1])
+   @findGetParameter
 
   forumPostReset: =>
     $('[name=username], [name=forum_id]').val ''
     $('[name=forum_children]').prop 'checked', false
+  findGetParameter: =>
+    results = new RegExp('[?&]' + "forum_id" + '=([^&#]*)').exec(window.location.href)
+    $("search-advanced-forum-post__input select").val decodeURI(results[1])

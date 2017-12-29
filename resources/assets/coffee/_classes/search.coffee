@@ -19,14 +19,13 @@
 class @Search
   constructor: ->
     $(document).on 'click', '.js-search--advanced-forum-post-reset', @forumPostReset
-    $(window).load -> 
-      console.log findGetParameter()
+    $(window).load -> console.log @findGetParameter
 
   forumPostReset: =>
     $('[name=username], [name=forum_id]').val ''
     $('[name=forum_children]').prop 'checked', false
 
-  findGetParameter = () ->
+  findGetParameter: =>
   result = null
   tmp = []
   items = location.search.substr(1).split('&')
